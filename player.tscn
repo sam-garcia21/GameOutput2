@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://chtidl2mohhp0"]
 
 [ext_resource type="Texture2D" uid="uid://cky52wk1j151j" path="res://assets/PlayerSprite/male_hero-idle.png" id="1_hqtel"]
+[ext_resource type="Script" uid="uid://cciae8bby2h5b" path="res://scripts/player.gd" id="1_sweqy"]
 [ext_resource type="Texture2D" uid="uid://b5w5a0f2fbisq" path="res://assets/PlayerSprite/male_hero-jump.png" id="2_sweqy"]
 [ext_resource type="Texture2D" uid="uid://dh3c0slty228f" path="res://assets/PlayerSprite/male_hero-run.png" id="3_2hs0m"]
 [ext_resource type="Texture2D" uid="uid://dsjp8siter4kt" path="res://assets/PlayerSprite/male_hero-walk.png" id="4_1jxqw"]
@@ -282,9 +283,10 @@ animations = [{
 
 [node name="Player" type="CharacterBody2D" unique_id=411815136]
 scale = Vector2(3, 3)
+script = ExtResource("1_sweqy")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=228486173]
 texture_filter = 1
 sprite_frames = SubResource("SpriteFrames_dg5fb")
-animation = &"walk"
-frame_progress = 0.5394305
+animation = &"idle"
+autoplay = "idle"
