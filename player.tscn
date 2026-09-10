@@ -360,3 +360,5 @@ frame_progress = 0.054035645
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1728380298]
 position = Vector2(-0.5, -0.8333337)
 shape = SubResource("RectangleShape2D_dg5fb")
+
+[connection signal="animation_finished" from="AnimatedSprite2D" to="." method="_on_animated_sprite_2d_animation_finished"]

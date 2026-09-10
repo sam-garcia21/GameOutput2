@@ -3,11 +3,16 @@ extends CharacterBody2D
 @onready var animated_sprite_2d: AnimatedSprite2D = $AnimatedSprite2D
 
 
-const SPEED = 300.0
+const SPEED = 250.0
 const SPRINT_SPEED = 500.0
 
-const JUMP_VELOCITY = -400.0
-const MIN_JUMP_VELOCITY = -200.0
+const JUMP_VELOCITY = -1100.0
+const MIN_JUMP_VELOCITY = -500.0
+
+
+# Determines if character was jumping or not.
+var was_jumping = false
+var was_falling = false
 
 
 func _physics_process(delta: float) -> void:
@@ -15,8 +20,10 @@ func _physics_process(delta: float) -> void:
 	if not is_on_floor():
 		velocity += get_gravity() * delta
 
+
 	# Get movement direction
 	var direction := Input.get_axis("left", "right")
+
 
 	# Sprint
 	var current_speed = SPEED
@@ -24,19 +31,25 @@ func _physics_process(delta: float) -> void:
 	if Input.is_action_pressed("sprint"):
 		current_speed = SPRINT_SPEED
 
+
 	# Movement
 	if direction:
 		velocity.x = direction * current_speed
 	else:
 		velocity.x = move_toward(velocity.x, 0, current_speed)
 
+
 	# Jump
 	if Input.is_action_just_pressed("jump") and is_on_floor():
 		velocity.y = JUMP_VELOCITY
+		was_jumping = true
+		was_falling = false
+
 
 	# Short jump if player releases jump early
 	if Input.is_action_just_released("jump") and velocity.y < MIN_JUMP_VELOCITY:
 		velocity.y = MIN_JUMP_VELOCITY
+
 
 	# Flip sprite
 	if direction == 1.0:
@@ -44,15 +57,45 @@ func _physics_process(delta: float) -> void:
 	elif direction == -1.0:
 		animated_sprite_2d.flip_h = true
 
+
 	# Animation
 	if not is_on_floor():
-		animated_sprite_2d.play("jump")
-	elif abs(velocity.x) > 1:
-		if Input.is_action_pressed("sprint"):
-			animated_sprite_2d.play("run")
+
+		# Going upward
+		if velocity.y < 0:
+			animated_sprite_2d.play("jump")
+
+		# Going downward
 		else:
-			animated_sprite_2d.play("walk")
+			# Character jumped and has just started falling
+			if was_jumping and not was_falling:
+				animated_sprite_2d.play("fall")
+				was_falling = true
+
+			# Character walked off a ledge
+			elif not was_jumping:
+				animated_sprite_2d.play("fall_loop")
+
+
 	else:
-		animated_sprite_2d.play("idle")
+		# Player is on the ground
+		was_jumping = false
+		was_falling = false
+
+		if abs(velocity.x) > 1:
+
+			if Input.is_action_pressed("sprint"):
+				animated_sprite_2d.play("run")
+			else:
+				animated_sprite_2d.play("walk")
+
+		else:
+			animated_sprite_2d.play("idle")
+
 
 	move_and_slide()
+
+
+func _on_animated_sprite_2d_animation_finished() -> void:
+	if animated_sprite_2d.animation == "fall":
+		animated_sprite_2d.play("fall_loop")
