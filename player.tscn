@@ -76,27 +76,27 @@ region = Rect2(1024, 0, 128, 128)
 atlas = ExtResource("1_hqtel")
 region = Rect2(1152, 0, 128, 128)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_q13i1"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_1jxqw"]
 atlas = ExtResource("2_sweqy")
 region = Rect2(0, 0, 128, 128)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_pylmc"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_q13i1"]
 atlas = ExtResource("2_sweqy")
 region = Rect2(128, 0, 128, 128)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_pbfsw"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_pylmc"]
 atlas = ExtResource("2_sweqy")
 region = Rect2(256, 0, 128, 128)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_5tmop"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_pbfsw"]
 atlas = ExtResource("2_sweqy")
 region = Rect2(384, 0, 128, 128)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_7ahtn"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_5tmop"]
 atlas = ExtResource("2_sweqy")
 region = Rect2(512, 0, 128, 128)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_7lmhl"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_7ahtn"]
 atlas = ExtResource("2_sweqy")
 region = Rect2(640, 0, 128, 128)
 
@@ -250,6 +250,9 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
+"texture": SubResource("AtlasTexture_1jxqw")
+}, {
+"duration": 1.0,
 "texture": SubResource("AtlasTexture_q13i1")
 }, {
 "duration": 1.0,
@@ -263,9 +266,6 @@ animations = [{
 }, {
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_7ahtn")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_7lmhl")
 }],
 "loop": 1,
 "name": &"jump",
@@ -343,7 +343,7 @@ animations = [{
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_dg5fb"]
-size = Vector2(19, 33.666668)
+size = Vector2(13.666667, 34.666668)
 
 [node name="Player" type="CharacterBody2D" unique_id=411815136]
 scale = Vector2(3, 3)
@@ -352,13 +352,22 @@ script = ExtResource("1_sweqy")
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=228486173]
 texture_filter = 1
 sprite_frames = SubResource("SpriteFrames_dg5fb")
-animation = &"fall_loop"
+animation = &"walk"
 autoplay = "idle"
-frame = 1
-frame_progress = 0.054035645
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1728380298]
-position = Vector2(-0.5, -0.8333337)
+position = Vector2(-1.1666665, -1.3333337)
 shape = SubResource("RectangleShape2D_dg5fb")
+
+[node name="Camera2D" type="Camera2D" parent="." unique_id=1246742345]
+offset = Vector2(50, -70)
+process_callback = 0
+position_smoothing_enabled = true
+drag_horizontal_enabled = true
+drag_vertical_enabled = true
+drag_left_margin = 0.1
+drag_top_margin = 0.1
+drag_right_margin = 0.05
+drag_bottom_margin = 0.1
 
 [connection signal="animation_finished" from="AnimatedSprite2D" to="." method="_on_animated_sprite_2d_animation_finished"]
