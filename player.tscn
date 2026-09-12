@@ -353,7 +353,7 @@ script = ExtResource("1_sweqy")
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=228486173]
 texture_filter = 1
 sprite_frames = SubResource("SpriteFrames_dg5fb")
-animation = &"walk"
+animation = &"idle"
 autoplay = "idle"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1728380298]
@@ -363,6 +363,7 @@ shape = SubResource("RectangleShape2D_dg5fb")
 [node name="Camera2D" type="Camera2D" parent="." unique_id=1246742345]
 offset = Vector2(50, -70)
 process_callback = 0
+limit_bottom = 800
 position_smoothing_enabled = true
 drag_horizontal_enabled = true
 drag_vertical_enabled = true
