@@ -347,6 +347,7 @@ size = Vector2(13.666667, 34.666668)
 
 [node name="Player" type="CharacterBody2D" unique_id=411815136]
 scale = Vector2(3, 3)
+collision_mask = 6
 script = ExtResource("1_sweqy")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=228486173]

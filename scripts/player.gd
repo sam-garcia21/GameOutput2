@@ -45,11 +45,16 @@ func _physics_process(delta: float) -> void:
 		was_jumping = true
 		was_falling = false
 
+	if is_on_floor() and Input.is_action_just_pressed("ui_down"):
+		set_collision_mask_value(3, false)
+		await get_tree().create_timer(0.15).timeout
+		set_collision_mask_value(3, true)
 
 	# Short jump if player releases jump early
 	if Input.is_action_just_released("jump") and velocity.y < MIN_JUMP_VELOCITY:
 		velocity.y = MIN_JUMP_VELOCITY
-
+	
+	
 
 	# Flip sprite
 	if direction == 1.0:
