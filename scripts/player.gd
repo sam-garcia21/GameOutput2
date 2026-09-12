@@ -9,6 +9,8 @@ const SPRINT_SPEED = 500.0
 const JUMP_VELOCITY = -1100.0
 const MIN_JUMP_VELOCITY = -500.0
 
+const RESPAWN_POSITION: Vector2 = Vector2(532, 512)
+
 
 # Determines if character was jumping or not.
 var was_jumping = false
@@ -16,6 +18,21 @@ var was_falling = false
 
 
 func _physics_process(delta: float) -> void:
+	# check bounce collision tiles
+	var bounce_tilemap = get_node("/root/Main/Level1/BounceTiles")
+	var collider = get_last_slide_collision()
+	if collider:
+		if collider.get_collider() == bounce_tilemap:
+			if (collider.get_angle() < 0.1):
+				velocity += 1500 * Vector2.UP.rotated(collider.get_angle())
+				print(velocity)
+	
+	# check if fell into void
+	if position.y > 2000:
+		animated_sprite_2d.play("idle")
+		position = RESPAWN_POSITION
+		return
+	
 	# Add gravity
 	if not is_on_floor():
 		velocity += get_gravity() * delta
@@ -99,6 +116,7 @@ func _physics_process(delta: float) -> void:
 
 
 	move_and_slide()
+	
 
 
 func _on_animated_sprite_2d_animation_finished() -> void:
