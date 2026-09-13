@@ -1,5 +1,5 @@
 extends CharacterBody2D
-
+class_name player
 @onready var animated_sprite_2d: AnimatedSprite2D = $AnimatedSprite2D
 
 
@@ -18,15 +18,6 @@ var was_falling = false
 
 
 func _physics_process(delta: float) -> void:
-	# check bounce collision tiles
-	var bounce_tilemap = get_node("/root/Main/Level1/BounceTiles")
-	var collider = get_last_slide_collision()
-	if collider:
-		if collider.get_collider() == bounce_tilemap:
-			if (collider.get_angle() < 0.1):
-				velocity += 1500 * Vector2.UP.rotated(collider.get_angle())
-				print(velocity)
-	
 	# check if fell into void
 	if position.y > 2000:
 		animated_sprite_2d.play("idle")
@@ -51,7 +42,7 @@ func _physics_process(delta: float) -> void:
 
 	# Movement
 	if direction:
-		velocity.x = direction * current_speed
+		velocity.x = move_toward(velocity.x, direction * current_speed, current_speed)
 	else:
 		velocity.x = move_toward(velocity.x, 0, current_speed)
 
@@ -123,3 +114,8 @@ func _physics_process(delta: float) -> void:
 func _on_animated_sprite_2d_animation_finished() -> void:
 	if animated_sprite_2d.animation == "fall":
 		animated_sprite_2d.play("fall_loop")
+		
+func _bounce(angle: float, strength: float) -> void:
+	velocity = Vector2.UP.rotated(angle) * strength
+	print(velocity)
+	move_and_slide()
