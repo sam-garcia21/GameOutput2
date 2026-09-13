@@ -85,7 +85,8 @@ func _physics_process(delta: float) -> void:
 
 		# Going upward
 		if velocity.y < 0:
-			animated_sprite_2d.play("jump")
+			if animated_sprite_2d.animation != "jump":
+				animated_sprite_2d.play("jump")
 
 		# Going downward
 		else:
@@ -122,6 +123,3 @@ func _physics_process(delta: float) -> void:
 func _on_animated_sprite_2d_animation_finished() -> void:
 	if animated_sprite_2d.animation == "fall":
 		animated_sprite_2d.play("fall_loop")
-	elif animated_sprite_2d.animation == "jump":
-		animated_sprite_2d.set_frame(5)
-		animated_sprite_2d.pause()

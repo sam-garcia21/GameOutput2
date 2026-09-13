@@ -355,6 +355,8 @@ texture_filter = 1
 sprite_frames = SubResource("SpriteFrames_dg5fb")
 animation = &"jump"
 autoplay = "idle"
+frame = 5
+frame_progress = 1.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1728380298]
 position = Vector2(-1.1666665, -1.3333337)
