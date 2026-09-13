@@ -267,7 +267,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_7ahtn")
 }],
-"loop": 1,
+"loop": 0,
 "name": &"jump",
 "speed": 15.0
 }, {
@@ -353,7 +353,7 @@ script = ExtResource("1_sweqy")
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=228486173]
 texture_filter = 1
 sprite_frames = SubResource("SpriteFrames_dg5fb")
-animation = &"idle"
+animation = &"jump"
 autoplay = "idle"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1728380298]
