@@ -60,3 +60,4 @@ sprint={
 [rendering]
 
 rendering_device/driver.windows="d3d12"
+environment/defaults/default_clear_color=Color(0.16078432, 0.6745098, 0.99215686, 1)

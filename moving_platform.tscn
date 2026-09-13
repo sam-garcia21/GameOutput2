@@ -1,0 +1,28 @@
+[gd_scene format=3 uid="uid://b6qsxgorw87ec"]
+
+[ext_resource type="Script" uid="uid://bcyvtiyybca8t" path="res://moving_platform.gd" id="1_hrpga"]
+[ext_resource type="Texture2D" uid="uid://cde333pp80e6j" path="res://assets/Tileset/Background/GrassLand_Cloud_3.png" id="1_q06lf"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ax885"]
+size = Vector2(80, 10)
+
+[node name="moving_platform" type="Path2D" unique_id=332729282]
+script = ExtResource("1_hrpga")
+SPEED = 20.0
+
+[node name="PathFollow2D" type="PathFollow2D" parent="." unique_id=1032534396]
+rotates = false
+
+[node name="Sprite2D" type="Sprite2D" parent="PathFollow2D" unique_id=450359302]
+self_modulate = Color(0.76510215, 0.81077635, 0.5276335, 1)
+texture = ExtResource("1_q06lf")
+
+[node name="AnimatableBody2D" type="AnimatableBody2D" parent="PathFollow2D" unique_id=819785033]
+collision_layer = 4
+collision_mask = 7
+sync_to_physics = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PathFollow2D/AnimatableBody2D" unique_id=510457118]
+position = Vector2(1, 5)
+shape = SubResource("RectangleShape2D_ax885")
+one_way_collision = true
