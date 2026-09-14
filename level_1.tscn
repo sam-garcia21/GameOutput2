@@ -289,6 +289,7 @@ SPEED = 100.0
 [node name="moving_platform4" parent="moving_platforms" unique_id=2146421844 instance=ExtResource("8_bjebc")]
 position = Vector2(832, 32)
 curve = SubResource("Curve2D_gyffv")
+SPEED = 100.0
 
 [node name="mushrooms" type="Node2D" parent="." unique_id=565597365]
 

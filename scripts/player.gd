@@ -117,5 +117,4 @@ func _on_animated_sprite_2d_animation_finished() -> void:
 		
 func _bounce(angle: float, strength: float) -> void:
 	velocity = Vector2.UP.rotated(angle) * strength
-	print(velocity)
 	move_and_slide()
