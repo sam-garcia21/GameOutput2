@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://b6qsxgorw87ec"]
 
-[ext_resource type="Script" uid="uid://bcyvtiyybca8t" path="res://moving_platform.gd" id="1_hrpga"]
+[ext_resource type="Script" uid="uid://bcyvtiyybca8t" path="res://scripts/moving_platform.gd" id="1_hrpga"]
 [ext_resource type="Texture2D" uid="uid://cde333pp80e6j" path="res://assets/Tileset/Background/GrassLand_Cloud_3.png" id="1_q06lf"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ax885"]
