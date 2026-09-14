@@ -9,6 +9,7 @@
 [ext_resource type="Texture2D" uid="uid://4e1wfgbgl37t" path="res://assets/Tileset/Props/GrassLand_Details.png" id="5_j7kpp"]
 [ext_resource type="PackedScene" uid="uid://b6qsxgorw87ec" path="res://moving_platform.tscn" id="8_bjebc"]
 [ext_resource type="PackedScene" uid="uid://bjlqogc4ykb41" path="res://spring_mushroom.tscn" id="9_5rr72"]
+[ext_resource type="PackedScene" uid="uid://dv1tore27j0l" path="res://npc.tscn" id="10_gyffv"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_bjebc"]
 texture = ExtResource("5_j7kpp")
@@ -203,6 +204,12 @@ _data = {
 }
 point_count = 5
 
+[sub_resource type="Curve2D" id="Curve2D_d61ma"]
+_data = {
+"points": PackedVector2Array(0, 0, -160, 0, -160, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, -160, 0)
+}
+point_count = 3
+
 [node name="Level1" type="Node2D" unique_id=724554128]
 texture_filter = 1
 scale = Vector2(3, 3)
@@ -312,3 +319,7 @@ rotation = 3.1415927
 position = Vector2(24, 184)
 rotation = 1.5707964
 BOUNCE_STRENGTH = 3000.0
+
+[node name="NPC" parent="." unique_id=1943723812 instance=ExtResource("10_gyffv")]
+position = Vector2(930, 208)
+curve = SubResource("Curve2D_d61ma")
